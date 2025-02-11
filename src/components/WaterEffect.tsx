@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 const vertexShader = `
   varying vec2 vUv;
@@ -41,12 +42,11 @@ const fragmentShader = `
 
 export default function WaterEffect({ imageUrl }: { imageUrl: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const timeRef = useRef(0);
 
   useEffect(() => {
     if (!containerRef.current) return;
-
-    const THREE = require("three");
     const container = containerRef.current;
     const { width, height } = container.getBoundingClientRect();
 
