@@ -14,8 +14,114 @@
   }
 }
 
+@font-face {
+  font-family: "RMMono";
+  src: url("/fonts/RMMono.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeueMontreal";
+  src: url("/fonts/NeueMontreal-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeueMontreal";
+  src: url("/fonts/NeueMontreal-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "NeueMontreal", Arial, sans-serif;
+  overflow-x: hidden; /* Add this line */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/* Hide scrollbar buttons */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 transparent;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.bg-fade-mask-strong {
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 10%,
+    transparent 60%
+  );
+  mask-image: radial-gradient(circle at center, black 10%, transparent 60%);
+  background: radial-gradient(circle at center, transparent, white);
+}
+
+.mask-radial-center {
+  mask-image: radial-gradient(
+    circle at center,
+    black 20%,
+    /* Reduced from 20% */ transparent 50% /* Reduced from 70% */
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 20%,
+    /* Reduced from 20% */ transparent 50% /* Reduced from 70% */
+  );
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+}
+
+/* Remove the button-shrink-hover styles */
+.button-shrink-hover::before {
+  display: none;
+}
+
+.button-shrink-hover.bg-black::before {
+  display: none;
+}
+
+.button-shrink-hover:hover::before {
+  display: none;
+}
+
+.overflow-guard {
+  overflow-x: clip;
+  position: relative;
+  width: 100%;
 }
