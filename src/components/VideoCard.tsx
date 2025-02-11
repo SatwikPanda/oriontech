@@ -1,32 +1,39 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import CrossIcon from "./CrossIcon";
 import { useState } from "react";
 
 const VideoCard = () => {
   const [isVisible, setIsVisible] = useState(true);
 
-  if (!isVisible) return null;
+  const handleClose = () => {
+    setIsVisible(false);
+  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-      className="fixed bottom-12 right-12 bg-white rounded-2xl shadow-xl overflow-hidden w-72 h-40 z-50"
-    >
-      <CrossIcon onClick={() => setIsVisible(false)} />
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="w-full h-full object-cover"
-      >
-        <source src="/videos/demo.mp4" type="video/mp4" />
-      </video>
-    </motion.div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="hidden md:block fixed bottom-12 right-12 bg-white rounded-2xl shadow-xl overflow-hidden w-72 h-40 z-50"
+        >
+          <CrossIcon onClick={handleClose} />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/videos/showreel.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

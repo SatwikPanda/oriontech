@@ -142,34 +142,26 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="bg-white text-black">
+      <body className="bg-white text-black overflow-x-hidden w-full">
         <nav
-          className={`fixed w-full z-50 transition-all duration-300 ${
+          className={`fixed w-full z-[90] transition-all duration-300 ${
             scrolled ? "py-3" : "py-4"
           }`}
         >
-          {/* Gradient Background */}
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-white via-white/60 to-white/0 backdrop-blur-[0.2px]"
-            style={{ opacity: scrolled ? 1 : 0.8 }}
-          />
-
-          <div className="max-w-[90rem] mx-auto flex items-center justify-between px-6 relative z-10">
+          <div className="w-full px-4 flex items-center justify-between relative">
             {/* Logo */}
-            <a href="/" className="text-2xl font-medium z-50">
+            <a href="/" className="text-2xl font-medium z-[100]">
               Orion
             </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:block absolute left-1/2 -translate-x-1/2">
-              <div className="flex gap-8">
-                <NavLink href="/">Home</NavLink>
-                <NavLink href="/about">About</NavLink>
-                <NavLink href="/faqs">FAQs</NavLink>
-              </div>
+            {/* Desktop Navigation - Updated */}
+            <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+              <NavLink href="/">Home</NavLink>
+              <NavLink href="/about">About</NavLink>
+              <NavLink href="/faqs">FAQs</NavLink>
             </div>
 
-            {/* Desktop Buttons */}
+            {/* Desktop Buttons - Updated */}
             <div className="hidden lg:flex items-center gap-4">
               <motion.a
                 href="/login"
@@ -197,7 +189,7 @@ export default function RootLayout({
 
             {/* Mobile Menu */}
             <motion.div
-              className={`lg:hidden fixed inset-0 bg-white z-40 ${
+              className={`fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-white z-[95] overflow-hidden ${
                 isMenuOpen ? "block" : "hidden"
               }`}
               initial={{ opacity: 0, y: -20 }}
@@ -205,27 +197,28 @@ export default function RootLayout({
                 opacity: isMenuOpen ? 1 : 0,
                 y: isMenuOpen ? 0 : -20,
               }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="pt-24 px-6 flex flex-col gap-6">
+              <div className="pt-24 px-4 flex flex-col gap-6 w-full max-w-[100vw]">
                 <NavLink href="/">Home</NavLink>
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/faqs">FAQs</NavLink>
                 <div className="flex flex-col gap-4 mt-6">
-                  <motion.a href="/login" className="w-full py-3 text-center">
+                  <a href="/login" className="w-full py-3 text-center">
                     Login
-                  </motion.a>
-                  <motion.a
+                  </a>
+                  <a
                     href="/contact"
                     className="w-full py-3 text-center bg-black text-white rounded-lg"
                   >
                     Contact us
-                  </motion.a>
+                  </a>
                 </div>
               </div>
             </motion.div>
           </div>
         </nav>
-        {children}
+        <main className="overflow-x-hidden">{children}</main>
       </body>
     </html>
   );

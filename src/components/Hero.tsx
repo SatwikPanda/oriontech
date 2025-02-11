@@ -9,9 +9,12 @@ export default function Hero() {
   return (
     <section className="h-screen flex items-center justify-center px-6 relative overflow-hidden">
       {/* Background Effect */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 min-w-[300px] min-h-[300px] sm:min-w-full sm:min-h-full">
         <div className="relative w-full h-full">
-          <div className="absolute inset-0 mask-radial-center">
+          <div className="absolute inset-0 mask-radial-center hidden md:block">
+            <WaterEffect imageUrl="/images/ab-bg-2.png" />
+          </div>
+          <div className="absolute inset-0 mask-radial-center md:hidden">
             <WaterEffect imageUrl="/images/bg-gradient.png" />
           </div>
         </div>
@@ -23,11 +26,11 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[6vw] leading-[0.95] font-medium tracking-tight mb-10 whitespace-nowrap"
+            className="text-[3.5rem] md:text-[6rem] leading-[0.95] font-medium tracking-tight mb-10 "
           >
-            Build Digital Experiences
+            Build<br className="md:hidden"/> Digital<br className="md:hidden"/> Experiences
             <br />
-            People Remember.
+            People<br className="md:hidden"/> Remember.
           </motion.h1>
           <div className="flex flex-col gap-12">
             <div className="flex flex-col gap-6">
@@ -44,9 +47,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Video Card - Fixed Position */}
-      <VideoCard />
     </section>
   );
 }

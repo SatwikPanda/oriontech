@@ -458,7 +458,7 @@ export default function ProjectShowcase() {
     <section className="py-32 px-6 relative overflow-guard">
       <div className="text-center mb-20">
         <motion.h2
-          className="text-7xl tracking-[-0.03em] font-medium mb-6"
+          className="text-5xl md:text-7xl tracking-[-0.03em] font-medium mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -480,7 +480,7 @@ export default function ProjectShowcase() {
           you can focus on growing and achieving more.
         </motion.p>
       </div>
-      <div className="absolute inset-0 mask-radial-center ">
+      <div className="hidden md:block absolute inset-0 mask-radial-center ">
         <WaterEffect imageUrl="/images/bg-gradient.png" />
       </div>
       <div className="max-w-[88rem] mx-auto">

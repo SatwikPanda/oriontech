@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 
-const CrossIcon = ({ onClick }: { onClick: () => void }) => {
+interface CrossIconProps {
+  onClick: () => void;
+}
+
+const CrossIcon = ({ onClick }: CrossIconProps) => {
   return (
     <motion.button
       onClick={onClick}
-      className="absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors"
+      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >
@@ -17,7 +21,8 @@ const CrossIcon = ({ onClick }: { onClick: () => void }) => {
         strokeWidth="2"
         strokeLinecap="round"
       >
-        <path d="M18 6L6 18M6 6l12 12" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
       </svg>
     </motion.button>
   );
