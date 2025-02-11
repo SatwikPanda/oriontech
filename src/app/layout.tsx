@@ -109,30 +109,6 @@ export default function RootLayout({
 }>) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isFooterVisible, setIsFooterVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (window.innerWidth < 768) {
-          // Only trigger for mobile
-          setIsFooterVisible(entry.isIntersecting);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const footer = document.querySelector("footer");
-    if (footer) {
-      observer.observe(footer);
-    }
-
-    return () => {
-      if (footer) {
-        observer.unobserve(footer);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -166,33 +142,29 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="bg-white text-black overflow-x-hidden w-full">
+      <body className="bg-white text-black">
         <nav
-          className={`fixed w-full transition-all duration-300 ${
+          className={`fixed w-full z-50 transition-all duration-300 ${
             scrolled ? "py-3" : "py-4"
-          } ${
-            isFooterVisible
-              ? "md:opacity-100 opacity-0 pointer-events-none md:pointer-events-auto"
-              : "opacity-100"
-          } z-[90]`}
+          }`}
         >
-          {/* Add gradient background */}
+          {/* Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none" />
 
-          <div className="w-full px-4 flex items-center justify-between relative">
+          <div className="max-w-[90rem] mx-auto flex items-center justify-between px-6 relative">
             {/* Logo */}
-            <a href="/" className="text-2xl font-medium z-[100]">
-              Orion.
+            <a href="/" className="text-2xl font-medium z-50">
+              Orion
             </a>
 
-            {/* Desktop Navigation - Updated */}
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/about">About</NavLink>
               <NavLink href="/faqs">FAQs</NavLink>
             </div>
 
-            {/* Desktop Buttons - Updated */}
+            {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-4">
               <motion.a
                 href="/login"
@@ -212,7 +184,7 @@ export default function RootLayout({
               </motion.a>
             </div>
 
-            {/* Hamburger Menu */}
+            {/* Mobile Menu Button */}
             <HamburgerMenu
               isOpen={isMenuOpen}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -220,7 +192,7 @@ export default function RootLayout({
 
             {/* Mobile Menu */}
             <motion.div
-              className={`fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-white z-[95] overflow-hidden ${
+              className={`lg:hidden fixed inset-0 bg-white z-40 ${
                 isMenuOpen ? "block" : "hidden"
               }`}
               initial={{ opacity: 0, y: -20 }}
@@ -230,7 +202,7 @@ export default function RootLayout({
               }}
               transition={{ duration: 0.3 }}
             >
-              <div className="pt-24 px-4 flex flex-col gap-6 w-full max-w-[100vw]">
+              <div className="pt-24 px-6 flex flex-col gap-6">
                 <NavLink href="/">Home</NavLink>
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/faqs">FAQs</NavLink>
@@ -249,7 +221,7 @@ export default function RootLayout({
             </motion.div>
           </div>
         </nav>
-        <main className="overflow-x-hidden">{children}</main>
+        {children}
       </body>
     </html>
   );

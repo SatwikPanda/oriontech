@@ -9,34 +9,33 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerProps) {
   return (
     <button
       onClick={onClick}
-      className="block lg:hidden z-[100] w-10 h-10 relative bg-white/80 backdrop-blur-sm rounded-lg"
+      className="lg:hidden z-50 flex flex-col justify-center items-center w-12 h-12 relative"
       aria-label="Menu"
     >
-      <div className="flex flex-col items-center justify-center w-full h-full">
-        <motion.span
-          className="w-5 h-0.5 bg-black absolute rounded-full"
-          animate={{
-            rotate: isOpen ? 45 : 0,
-            y: isOpen ? 0 : -4,
-          }}
-          transition={{ duration: 0.2 }}
-        />
-        <motion.span
-          className="w-5 h-0.5 bg-black absolute rounded-full"
-          animate={{
-            opacity: isOpen ? 0 : 1,
-          }}
-          transition={{ duration: 0.2 }}
-        />
-        <motion.span
-          className="w-5 h-0.5 bg-black absolute rounded-full"
-          animate={{
-            rotate: isOpen ? -45 : 0,
-            y: isOpen ? 0 : 4,
-          }}
-          transition={{ duration: 0.2 }}
-        />
-      </div>
+      <motion.span
+        className="w-7 h-0.5 bg-black absolute rounded-full"
+        animate={{
+          rotate: isOpen ? 45 : 0,
+          y: isOpen ? 0 : -6,
+        }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
+      />
+      <motion.span
+        className="w-7 h-0.5 bg-black absolute rounded-full"
+        animate={{
+          opacity: isOpen ? 0 : 1,
+          x: isOpen ? 10 : 0,
+        }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
+      />
+      <motion.span
+        className="w-7 h-0.5 bg-black absolute rounded-full"
+        animate={{
+          rotate: isOpen ? -45 : 0,
+          y: isOpen ? 0 : 6,
+        }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
+      />
     </button>
   );
 }
