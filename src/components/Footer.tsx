@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AnimatedText } from "../app/layout";
+import AnimatedText from "./AnimatedText";
 import Link from "next/link";
 
 export default function Footer() {

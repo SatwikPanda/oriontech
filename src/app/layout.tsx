@@ -6,103 +6,6 @@ import "./globals.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Link from "next/link";
 
-const containerVariants = {
-  initial: { overflow: "hidden" },
-  hover: {
-    transition: {
-      staggerChildren: 0.03,
-      delayChildren: 0.02,
-    },
-  },
-};
-
-const letterVariants = {
-  initial: {
-    y: 0,
-    rotate: 0,
-    scale: 1,
-  },
-  hover: {
-    y: -25,
-    rotate: -4,
-    scale: 0.9,
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const overlayLetterVariants = {
-  initial: {
-    y: 15,
-    rotate: 4,
-    scale: 0.9,
-    opacity: 0,
-  },
-  hover: {
-    y: 0,
-    rotate: 0,
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-export const AnimatedText = ({
-  text,
-  className,
-}: {
-  text: string;
-  className?: string;
-}) => (
-  <div className={className}>
-    <motion.div className="relative">
-      <motion.div
-        variants={containerVariants}
-        className="block"
-        style={{ perspective: "800px" }}
-      >
-        {text.split("").map((char, i) => (
-          <motion.span
-            key={i}
-            variants={letterVariants}
-            className="inline-block origin-bottom"
-            style={{
-              backfaceVisibility: "hidden",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
-      </motion.div>
-      <motion.div
-        variants={containerVariants}
-        className="absolute inset-0"
-        style={{ perspective: "800px" }}
-      >
-        {text.split("").map((char, i) => (
-          <motion.span
-            key={i}
-            variants={overlayLetterVariants}
-            className="inline-block origin-top"
-            style={{
-              backfaceVisibility: "hidden",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
-      </motion.div>
-    </motion.div>
-  </div>
-);
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -127,7 +30,7 @@ export default function RootLayout({
       initial="initial"
       whileHover="hover"
     >
-      <AnimatedText text={children} className="text-black" />
+      {children}
       <motion.div
         className="absolute -bottom-1 left-0 right-0 h-[2px] bg-black origin-left"
         initial={{ scaleX: 0 }}
@@ -173,7 +76,7 @@ export default function RootLayout({
                 initial="initial"
                 whileHover="hover"
               >
-                <AnimatedText text="Login" />
+                Login
               </motion.a>
               <motion.a
                 href="/contact"
@@ -181,7 +84,7 @@ export default function RootLayout({
                 initial="initial"
                 whileHover="hover"
               >
-                <AnimatedText text="Contact us" className="text-white" />
+                Contact us
               </motion.a>
             </div>
 

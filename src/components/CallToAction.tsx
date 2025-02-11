@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import WaterEffect from "./WaterEffect";
-import { AnimatedText } from "../app/layout";
+import AnimatedText from "../components/AnimatedText";
 
 export default function CallToAction() {
   const sectionRef = useRef<HTMLDivElement>(null);
