@@ -109,6 +109,30 @@ export default function RootLayout({
 }>) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (window.innerWidth < 768) {
+          // Only trigger for mobile
+          setIsFooterVisible(entry.isIntersecting);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const footer = document.querySelector("footer");
+    if (footer) {
+      observer.observe(footer);
+    }
+
+    return () => {
+      if (footer) {
+        observer.unobserve(footer);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -144,14 +168,21 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-white text-black overflow-x-hidden w-full">
         <nav
-          className={`fixed w-full z-[90] transition-all duration-300 ${
+          className={`fixed w-full transition-all duration-300 ${
             scrolled ? "py-3" : "py-4"
-          }`}
+          } ${
+            isFooterVisible
+              ? "md:opacity-100 opacity-0 pointer-events-none md:pointer-events-auto"
+              : "opacity-100"
+          } z-[90]`}
         >
+          {/* Add gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none" />
+          
           <div className="w-full px-4 flex items-center justify-between relative">
             {/* Logo */}
             <a href="/" className="text-2xl font-medium z-[100]">
-              Orion
+              Orion.
             </a>
 
             {/* Desktop Navigation - Updated */}
