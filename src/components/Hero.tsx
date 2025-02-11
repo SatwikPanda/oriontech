@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AnimatedText } from "../app/layout";
-import VideoCard from "./VideoCard";
 import WaterEffect from "./WaterEffect";
 
 export default function Hero() {

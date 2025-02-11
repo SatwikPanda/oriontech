@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import "./globals.css";
 import HamburgerMenu from "../components/HamburgerMenu";
+import Link from "next/link";
 
 const containerVariants = {
   initial: { overflow: "hidden" },
@@ -153,9 +154,9 @@ export default function RootLayout({
 
           <div className="max-w-[90rem] mx-auto flex items-center justify-between px-6 relative">
             {/* Logo */}
-            <a href="/" className="text-2xl font-medium z-50">
+            <Link href="/" className="text-2xl font-medium z-50">
               Orion
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">

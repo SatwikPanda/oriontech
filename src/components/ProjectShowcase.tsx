@@ -3,53 +3,11 @@
 import { motion } from "framer-motion";
 import { useState, useMemo, useEffect } from "react";
 import WaterEffect from "./WaterEffect";
-import MobileProjects from "./MobileProjects";
 
 // ...existing variants and constants...
 
-const containerVariants = {
-  hidden: {
-    opacity: 0,
-    perspective: 2000,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-  visible: {
-    opacity: 1,
-    perspective: 2000,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
-    },
-  },
-};
 
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: "100vh", // Start from bottom of viewport
-    z: -1000, // Start far behind
-    rotateX: 60,
-    scale: 0.5,
-    transformOrigin: "bottom",
-    transition: {
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    z: 0,
-    rotateX: 0,
-    scale: 1,
-    transition: {
-      duration: 1.5,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
+
 
 const sidebarVariants = {
   hidden: {
@@ -118,25 +76,6 @@ const projectsContainerVariants = {
   },
 };
 
-const projectCardVariants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.95,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
 // Desktop-only variants
 const desktopCardVariants = {
   hidden: {
@@ -159,10 +98,6 @@ const desktopCardVariants = {
   },
 };
 
-const mobileProjectCard = {
-  initial: { opacity: 1 }, // No initial animation state
-  visible: { opacity: 1 }, // No animation
-};
 
 const projects = [
   {
@@ -340,89 +275,7 @@ export default function ProjectShowcase() {
     });
   }, [activeCategory, searchQuery]);
 
-  // Reset search and force refresh when changing category
-  const handleCategoryChange = (category: string) => {
-    setSearchQuery("");
-    setActiveCategory(category);
-    setKey((prev) => prev + 1); // Increment key to force re-render
-  };
 
-  const ProjectCard = ({ project }) => {
-    const cardContent = (
-      <>
-        <div className="aspect-[4/3] overflow-hidden rounded-lg bg-black/5">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="mt-4">
-          <h3 className="text-lg font-medium">{project.title}</h3>
-          <p className="text-black/60 mt-1 text-sm">{project.description}</p>
-          <span className="text-black/40 text-sm font-rmmono mt-2 block">
-            {project.year}
-          </span>
-        </div>
-      </>
-    );
-
-    if (isMobile) {
-      return (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white p-2 rounded-lg border border-black/15"
-        >
-          {cardContent}
-        </a>
-      );
-    }
-
-    return (
-      <motion.a
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group bg-white p-2 rounded-lg border border-black/15 transition-all duration-300 hover:shadow-lg"
-        variants={desktopCardVariants}
-        style={{ transformOrigin: "bottom right" }}
-        layout
-      >
-        {cardContent}
-      </motion.a>
-    );
-  };
-
-  const MobileCards = () => (
-    <div className="grid grid-cols-1 gap-4 pb-10">
-      {projects.map((project) => (
-        <a
-          key={project.id}
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white p-2 rounded-lg border border-black/15"
-        >
-          <div className="aspect-[4/3] overflow-hidden rounded-lg bg-black/5">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="mt-4">
-            <h3 className="text-lg font-medium">{project.title}</h3>
-            <p className="text-black/60 mt-1 text-sm">{project.description}</p>
-            <span className="text-black/40 text-sm font-rmmono mt-2 block">
-              {project.year}
-            </span>
-          </div>
-        </a>
-      ))}
-    </div>
-  );
 
   // Simple mobile view without any animations or filtering
   const MobileView = () => (
