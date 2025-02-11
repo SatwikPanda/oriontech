@@ -42,6 +42,10 @@ body {
   position: relative;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -131,4 +135,13 @@ body {
   overflow-x: clip;
   position: relative;
   width: 100%;
+}
+
+/* 3D Transform Utils */
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-3d {
+  transform-style: preserve-3d;
 }

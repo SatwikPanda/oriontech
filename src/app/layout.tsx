@@ -178,7 +178,7 @@ export default function RootLayout({
         >
           {/* Add gradient background */}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none" />
-          
+
           <div className="w-full px-4 flex items-center justify-between relative">
             {/* Logo */}
             <a href="/" className="text-2xl font-medium z-[100]">
