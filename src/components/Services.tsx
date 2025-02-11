@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -75,8 +76,8 @@ export default function Services() {
 
     // Cleanup
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       cardRefs.current.forEach((card) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (card && (card as any).vanillaTilt) {
           (card as any).vanillaTilt.destroy();
         }

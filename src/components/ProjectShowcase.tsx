@@ -1,13 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
 import { useState, useMemo, useEffect } from "react";
 import WaterEffect from "./WaterEffect";
-
-// ...existing variants and constants...
-
-
-
 
 const sidebarVariants = {
   hidden: {
