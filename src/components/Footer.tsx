@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { AnimatedText } from "../app/layout";
+import Link from "next/link";
 
 export default function Footer() {
   const footerLinks = [
@@ -23,20 +25,39 @@ export default function Footer() {
     },
   ];
 
+  const FooterLink = ({
+    href,
+    children,
+  }: {
+    href: string;
+    children: string;
+  }) => (
+    <motion.div className="relative group" initial="initial" whileHover="hover">
+      <Link href={href}>
+        <AnimatedText
+          text={children}
+          className="text-black/60 hover:text-black text-sm"
+        />
+      </Link>
+    </motion.div>
+  );
+
   return (
     <footer className="relative bg-white text-black">
-      {/* Top Separator Line */}
       <div className="w-full h-[1px] bg-gradient-to-r from-black/5 via-black/10 to-black/5" />
 
       <div className="py-16 px-4 md:px-6">
         <div className="max-w-[90rem] mx-auto">
-          {/* ...existing grid layout... */}
-
-          {/* Update text colors to use black/60 consistently */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* Brand Section */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-medium">Orion</h2>
+              <motion.div
+                initial="initial"
+                whileHover="hover"
+                className="inline-block"
+              >
+                <AnimatedText text="Orion" className="text-2xl font-medium" />
+              </motion.div>
               <p className="text-black/60 text-sm max-w-xs">
                 Crafting digital experiences that leave lasting impressions
                 through innovative design and development.
@@ -52,12 +73,7 @@ export default function Footer() {
                 <ul className="space-y-4">
                   {section.links.map((link) => (
                     <li key={link}>
-                      <a
-                        href="#"
-                        className="text-black/60 hover:text-black transition-colors text-sm"
-                      >
-                        {link}
-                      </a>
+                      <FooterLink href="#">{link}</FooterLink>
                     </li>
                   ))}
                 </ul>
@@ -72,13 +88,9 @@ export default function Footer() {
             </p>
             <div className="flex gap-6">
               {["Twitter", "LinkedIn", "GitHub"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="text-black/60 hover:text-black transition-colors"
-                >
+                <FooterLink key={social} href="#">
                   {social}
-                </a>
+                </FooterLink>
               ))}
             </div>
           </div>

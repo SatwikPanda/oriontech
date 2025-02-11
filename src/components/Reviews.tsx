@@ -2,15 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
 import { reviews, trustedCompanies } from "../data/reviews";
 import ReviewCard from "./ReviewCard";
-import WaterEffect from "./WaterEffect";
 
 export default function Reviews() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(2); // Start with first real item
-  const [isScrolling, setIsScrolling] = useState(false);
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {

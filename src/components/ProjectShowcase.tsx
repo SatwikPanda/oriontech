@@ -242,7 +242,9 @@ const categories = [
 
 export default function ProjectShowcase() {
   const [searchQuery, setSearchQuery] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeCategory, setActiveCategory] = useState("All Projects");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [key, setKey] = useState(0); // Add key for forcing refresh
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);

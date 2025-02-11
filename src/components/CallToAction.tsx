@@ -42,7 +42,7 @@ export default function CallToAction() {
               Start building Products
             </h2>
             <p className="tracking-[-0.02em] font-medium text-black/80">
-              people can't ignore
+              people can&#39;t ignore
             </p>
           </div>
 

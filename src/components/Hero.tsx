@@ -37,7 +37,7 @@ export default function Hero() {
                   We craft exceptional websites and full-stack applications that
                   leave a lasting impact. From sleek designs to powerful
                   backends, we bring your ideas to life with cutting-edge
-                  technology and seamless user experiences. Let's build
+                  technology and seamless user experiences. Let&#39;s build
                   something unforgettable.
                 </p>
               </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion } from "framer-motion";
@@ -75,6 +76,7 @@ export default function Services() {
     // Cleanup
     return () => {
       cardRefs.current.forEach((card) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (card && (card as any).vanillaTilt) {
           (card as any).vanillaTilt.destroy();
         }
@@ -98,7 +100,9 @@ export default function Services() {
           {services.map((service, i) => (
             <motion.div
               key={service.id}
-              ref={(el) => (cardRefs.current[i] = el)}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
               className={`${service.className} bg-white border border-black/10 rounded-lg hover:border-black/30 transition-colors overflow-hidden h-[400px] flex flex-col transform-gpu`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
