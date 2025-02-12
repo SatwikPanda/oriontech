@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "./globals.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Link from "next/link";
+import AnimatedText from "@/components/AnimatedText";
 
 export default function RootLayout({
   children,
@@ -24,24 +25,25 @@ export default function RootLayout({
   }, []);
 
   const NavLink = ({ href, children }: { href: string; children: string }) => (
-    <motion.a
-      href={href}
+    <motion.div
       className="relative group"
       initial="initial"
       whileHover="hover"
     >
-      {children}
-      <motion.div
-        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-black origin-left"
-        initial={{ scaleX: 0 }}
-        variants={{
-          hover: {
-            scaleX: 1,
-            transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-          },
-        }}
-      />
-    </motion.a>
+      <Link href={href}>
+        <AnimatedText text={children} className="text-black" />
+        <motion.div
+          className="absolute -bottom-1 left-0 right-0 h-[2px] bg-black origin-left"
+          initial={{ scaleX: 0 }}
+          variants={{
+            hover: {
+              scaleX: 1,
+              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+            },
+          }}
+        />
+      </Link>
+    </motion.div>
   );
 
   return (
@@ -58,7 +60,7 @@ export default function RootLayout({
           <div className="max-w-[90rem] mx-auto flex items-center justify-between px-6 relative">
             {/* Logo */}
             <Link href="/" className="text-2xl font-medium z-50">
-              Orion
+              <AnimatedText text="Orion" className="text-2xl font-medium" />
             </Link>
 
             {/* Desktop Navigation */}
@@ -70,22 +72,24 @@ export default function RootLayout({
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-4">
-              <motion.a
-                href="/login"
+              <motion.div
                 className="relative overflow-hidden px-4 py-2 rounded-full"
                 initial="initial"
                 whileHover="hover"
               >
-                Login
-              </motion.a>
-              <motion.a
-                href="/contact"
+                <Link href="/login">
+                  <AnimatedText text="Login" />
+                </Link>
+              </motion.div>
+              <motion.div
                 className="relative overflow-hidden bg-black text-white px-4 py-2 rounded-lg"
                 initial="initial"
                 whileHover="hover"
               >
-                Contact us
-              </motion.a>
+                <Link href="/contact">
+                  <AnimatedText text="Contact us" className="text-white" />
+                </Link>
+              </motion.div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -111,15 +115,15 @@ export default function RootLayout({
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/faqs">FAQs</NavLink>
                 <div className="flex flex-col gap-4 mt-6">
-                  <a href="/login" className="w-full py-3 text-center">
-                    Login
-                  </a>
-                  <a
+                  <Link href="/login" className="w-full py-3 text-center">
+                    <AnimatedText text="Login" />
+                  </Link>
+                  <Link
                     href="/contact"
                     className="w-full py-3 text-center bg-black text-white rounded-lg"
                   >
-                    Contact us
-                  </a>
+                    <AnimatedText text="Contact us" className="text-white" />
+                  </Link>
                 </div>
               </div>
             </motion.div>
