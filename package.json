@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "@supabase/supabase-js": "^2.48.1",
     "@types/three": "^0.173.0",
     "framer-motion": "^12.4.1",
     "gsap": "^3.12.7",
